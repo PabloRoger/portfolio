@@ -1,0 +1,57 @@
+---
+const personalImageAlt = "Pablo Roger"
+import ButtonDynamic from "@components/ButtonDynamic.astro";
+import Techstack from "@components/Techstack.astro";
+
+const stack = ["Kotlin", "Spring Boot", "Typescript", "React", "Git"]
+
+const buttonToExternalWebs = new Map()
+buttonToExternalWebs.set("LinkedIn", "https://linkedin.com/in/pablo-roger-vico")
+buttonToExternalWebs.set("Correo", "mailto:parovi97@gmail.com")
+---
+<div>
+  <div class="flex gap-4 mb-4">
+    <img
+      class="rounded-full shadow-lg size-20"
+      src="/pablo-roger.webp"
+      alt={personalImageAlt}
+    />
+
+    {Array
+      .from(buttonToExternalWebs)
+      .map(([socialMediaName, url]) => (
+        <ButtonDynamic
+          key={socialMediaName}
+          url={url}
+          name={socialMediaName}
+        />
+      ))
+    }
+  </div>
+  <h1
+    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
+    >
+      ¡Hola! Soy Pablo 👋
+  </h1>
+  <p
+    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-green-400 [&>strong]:text-green-400 [&>strong]:font-semibold dark:text-gray-300"
+  >
+    <strong>Desarrollador web.</strong> De Granada, España 🇪🇸<br> Desarrollo Fullstack de la A a la Z 💻
+  </p>
+
+  <div>
+    <p
+    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-white-200 [&>strong]:text-white-500 [&>strong]:font-semibold dark:text-gray-300"
+    >
+      <strong>Mi stack favorito</strong>
+    </p>
+    <div class="mt-4 flex">
+      {stack.map(element => (
+        <Techstack
+          name={element}
+        />
+      ))}
+    </div>
+  </div>
+
+</div>
